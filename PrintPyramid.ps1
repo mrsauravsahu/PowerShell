@@ -7,11 +7,12 @@ function Write-LeftPyramid {
         Date:   December 9, 2016    
     #>
     Param (
-        [Parameter(Mandatory=$true)][UInt32]$Lines
+        [Parameter(Mandatory=$true)][UInt32]$Lines,
+        [Parameter(Mandatory=$false)][String]$Pattern='*'
     )
     for ($i = 1; $i -le $Lines; $i++) {
         for ($j = 0; $j -lt $i; $j++) {
-            Write-Host '*' -NoNewline
+            Write-Host $Pattern -NoNewline
         }
         Write-Host ''
     }
@@ -26,14 +27,15 @@ function Write-RightPyramid {
         Date:   December 9, 2016
     #>
     Param (
-        [Parameter(Mandatory=$true)][UInt32] $Lines
+        [Parameter(Mandatory=$true)][UInt32] $Lines,
+        [Parameter(Mandatory=$false)][String]$Pattern = '*'
     )
     for ($i = 1; $i -le $Lines; $i++) {
         for ($j = 0; $j -lt ($Lines - $i); $j++) {
             Write-Host ' ' -NoNewline
         }
         for ($k = 0; $k -lt $i; $k++) {
-            Write-Host '*' -NoNewline
+            Write-Host $Pattern -NoNewline
         }
         Write-Host ''
     }
@@ -48,7 +50,8 @@ function Write-CenterPyramid {
         Date:   December 9, 2016
     #>
     Param (
-        [Parameter(Mandatory=$true)][UInt32]$Lines
+        [Parameter(Mandatory=$true)][UInt32]$Lines,
+        [Parameter(Mandatory=$false)][Char]$Pattern = '*'
     )
     
     function Write-Spaces($Length) {
@@ -67,7 +70,7 @@ function Write-CenterPyramid {
     $charsWidth = 1
     for ($i = 0; $i -lt $Lines; $i++) {
         Write-Spaces $spacesWidth
-        Write-Chars '*' ($charsWidth)
+        Write-Chars $Pattern ($charsWidth)
         Write-Spaces $spacesWidth
 
         $spacesWidth--
@@ -75,4 +78,3 @@ function Write-CenterPyramid {
         Write-Host ''
     }
 }
-Write-CenterPyramid 4
